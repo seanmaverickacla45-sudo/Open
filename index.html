@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eid Milad Miray 💐</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      overflow:hidden;
+      background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#f6d365);
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+    }
+
+    .container{
+      z-index:10;
+      padding:20px;
+      width:100%;
+      max-width:700px;
+    }
+
+    h1{
+      font-size:4rem;
+      color:#fff;
+      text-shadow:0 0 10px rgba(0,0,0,0.3);
+      animation: glow 2s infinite alternate;
+    }
+
+    p{
+      margin-top:20px;
+      font-size:1.3rem;
+      color:white;
+      line-height:1.7;
+    }
+
+    .btn{
+      margin-top:30px;
+      padding:14px 32px;
+      border:none;
+      border-radius:40px;
+      background:white;
+      color:#ff4081;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover{
+      transform:scale(1.08);
+      background:#ff4081;
+      color:white;
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px #fff,0 0 20px #ff4081;
+      }
+      to{
+        text-shadow:0 0 20px #fff,0 0 40px #ff1493;
+      }
+    }
+
+    /* Balloons */
+    .balloon{
+      width:80px;
+      height:100px;
+      border-radius:50%;
+      position:absolute;
+      bottom:-150px;
+      animation: float 10s infinite ease-in;
+      opacity:0.9;
+    }
+
+    .balloon::before{
+      content:'';
+      width:2px;
+      height:80px;
+      background:#fff;
+      position:absolute;
+      left:50%;
+      top:100px;
+    }
+
+    .balloon:nth-child(1){
+      left:8%;
+      background:#ff4d6d;
+      animation-duration:8s;
+    }
+
+    .balloon:nth-child(2){
+      left:25%;
+      background:#4dabf7;
+      animation-duration:10s;
+    }
+
+    .balloon:nth-child(3){
+      left:45%;
+      background:#ffd43b;
+      animation-duration:7s;
+    }
+
+    .balloon:nth-child(4){
+      left:65%;
+      background:#69db7c;
+      animation-duration:11s;
+    }
+
+    .balloon:nth-child(5){
+      left:85%;
+      background:#b197fc;
+      animation-duration:9s;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+      }
+    }
+
+    /* Flowers */
+    .flower{
+      position:absolute;
+      font-size:2rem;
+      animation: fall linear infinite;
+      opacity:0.8;
+    }
+
+    .flower:nth-child(6){
+      left:15%;
+      animation-duration:8s;
+    }
+
+    .flower:nth-child(7){
+      left:35%;
+      animation-duration:10s;
+    }
+
+    .flower:nth-child(8){
+      left:55%;
+      animation-duration:7s;
+    }
+
+    .flower:nth-child(9){
+      left:75%;
+      animation-duration:9s;
+    }
+
+    @keyframes fall{
+      0%{
+        transform:translateY(-100px) rotate(0deg);
+      }
+      100%{
+        transform:translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* Responsive */
+    @media(max-width:768px){
+      h1{
+        font-size:2.4rem;
+      }
+
+      p{
+        font-size:1rem;
+      }
+
+      .balloon{
+        width:55px;
+        height:75px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Balloons -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+
+  <!-- Flowers -->
+  <div class="flower">💐</div>
+  <div class="flower">🌸</div>
+  <div class="flower">🌺</div>
+  <div class="flower">🌷</div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>💐 Eid Milad Miray 💐</h1>
+
+    <p>
+      May your special day be filled with endless happiness,
+      beautiful memories, peace, laughter, and love. ✨<br><br>
+      Wishing you joy today and always. 🌸
+    </p>
+
+    <button class="btn" onclick="startCelebration()">
+      Celebrate 🎊
+    </button>
+  </div>
+
+  <!-- Music -->
+  <!-- Replace YOUR_AUDIO_FILE.mp3 with your downloaded song file -->
+  <audio id="music" loop>
+    <source src="YOUR_AUDIO_FILE.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    function startCelebration(){
+
+      // Play music
+      document.getElementById("music").play();
+
+      // Confetti animation
+      const duration = 6 * 1000;
+      const animationEnd = Date.now() + duration;
+
+      const defaults = {
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 1000
+      };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+
+        confetti(Object.assign({}, defaults, {
+          particleCount,
+          origin: {
+            x: randomInRange(0.1, 0.3),
+            y: Math.random() - 0.2
+          }
+        }));
+
+        confetti(Object.assign({}, defaults, {
+          particleCount,
+          origin: {
+            x: randomInRange(0.7, 0.9),
+            y: Math.random() - 0.2
+          }
+        }));
+
+      }, 250);
+    }
+
+    // Welcome Confetti
+    window.onload = () => {
+      confetti({
+        particleCount: 180,
+        spread: 180,
+        origin: { y: 0.6 }
+      });
+    };
+  </script>
+
+</body>
+</html>
